@@ -1,0 +1,15 @@
+name: Check Compatibility
+
+on:
+  - pull_request
+
+jobs:
+  Compatibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '^1.20.3'
+      - run: go run github.com/tufin/oasdiff@latest breaking -o ERR https://github.com/photoni-137/rfq-api/releases/download/v1.0.0/rfq-api-v1.oas.yml rfq-api-v1.oas.yml
+
