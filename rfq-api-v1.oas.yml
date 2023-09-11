@@ -33,6 +33,7 @@ components:
           type: string
           maxLength: 20
           pattern: '(\w+\W*)*'
+          example: firecracker
         quantity:
           type: integer
           format: int32
@@ -41,6 +42,7 @@ components:
         price:
           type: number
           minimum: 0
+          example: 1.99
         shipment:
           type: string
           enum:
