@@ -1,0 +1,28 @@
+name: OpenAPI Checks
+
+on:
+  - pull_request
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+      - run: npm install -g @stoplight/spectral-cli
+      - run: spectral lint -D error rfq-api-v1.oas.yml
+  Owasp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+      - run: npm install -g @stoplight/spectral-cli
+      - run: npm install --save -D @stoplight/spectral-owasp-ruleset
+      - run: spectral lint -r .spectral-owasp.yml -D error rfq-api-v1.oas.yml
+  Styleguide:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+      - run: npm install -g @stoplight/spectral-cli
+      - run: spectral lint -r .spectral-styleguide.yml -D error rfq-api-v1.oas.yml
