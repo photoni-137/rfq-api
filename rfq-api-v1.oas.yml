@@ -1,19 +1,25 @@
-openapi: '3.0.2'
+openapi: "3.0.2"
 info:
   title: Quotation API
-  version: '1.0'
+  version: "1.0"
+  contact:
+    email: anton.eder@tngtech.com
+  description: |
+    The API for Quotations
 servers:
   - url: https://api.server.test/v1
 paths:
   /rfqs:
     post:
+      operationId: requestQuote
+      description: TBD
       requestBody:
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/Quotation"
       responses:
-        '200':
+        "200":
           description: OK
 components:
   schemas:
